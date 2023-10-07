@@ -1,7 +1,8 @@
 from django.urls import path
-from django.urls import path
 from GardeningApp import views
 
 urlpatterns = [
-    path("home/", path.home, "homePage"),
+    # 1) starting from sign up page
+    path("signup/", views.signUp, name="signUpPage"),
+    path("home/", views.homePage, name="homePage"),
 ]
