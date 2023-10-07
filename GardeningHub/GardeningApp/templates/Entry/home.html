@@ -6,6 +6,16 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to the Garderning App</h1>
+    {% comment %} if not loged in: {% endcomment %}
+    {% if new_user_details == None %}
+    <h1>Welcome to the Garderning App<h1>
+    <button> <a style= "text-decoration: underline 0px;" href= "../signup/"> Login </a> </button>
+
+    {% block  %}
+    {% comment %} home page default contents {% endcomment %}
+    {% endblock  %}
+    {% else %}
+    <h1>Welcome to the Garderning App, {{ new_user_details }}</h1>
+    {% endif %}
 </body>
 </html>

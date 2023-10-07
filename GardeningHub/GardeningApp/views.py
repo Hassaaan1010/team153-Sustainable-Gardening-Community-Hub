@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import path
 from .forms import *
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -18,12 +19,15 @@ def signUp(request):
         if details_of_SignUpForm.is_valid():
             details_of_SignUpForm.save()
             context = {"new_user_details": details_of_SignUpForm}
-            return render(request, "home/", context)
+            welcomContext = {"new_user_details": request.POST.dict()["userName"]}
+            return render(request, "Entry/home.html", welcomContext)
 
     # if new user has to be registered, blank form will be rendered
     elif request.method == "GET":
         return render(request, "Entry/signUp.html", context)
+    return HttpResponse("Invalid Request")
 
 
 def homePage(request):
-    return render(request, "Entry/home.html")
+    context = {}
+    return render(request, "Entry/home.html", context)
